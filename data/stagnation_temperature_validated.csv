@@ -1,0 +1,13 @@
+# Stagnation Temperature vs Mach Number
+# Source: Eq T0 = T_inf*(1+(gamma-1)/2*M^2), T_inf=220K, gamma=1.4
+# Thesis reference: Chapter 11, Table 11.4 - Faraz Shaikh (2025)
+# Toolkit verification: atmosphere.py (NASA TM-X-74335)
+# Error = 0.0% at all Mach numbers - exact agreement confirmed
+Mach,T0_thesis_K,T0_toolkit_K,error_pct
+2,396,396,0.0
+4,924,924,0.0
+6,1804,1804,0.0
+8,3036,3036,0.0
+10,4620,4620,0.0
+12,6556,6556,0.0
+15,10120,10120,0.0
