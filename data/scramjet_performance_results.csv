@@ -1,0 +1,17 @@
+# Scramjet Performance Results - Toolkit Computation
+# Model: Enthalpy-based nozzle, quasi-1D thermodynamic
+# Fuel: H2 | LHV = 120.0 MJ/kg (AIAA standard)
+# Trajectory: Constant dynamic-pressure (Heiser & Pratt, 1994 [Thesis Ref 23])
+# Inlet recovery: Fitted to Heiser & Pratt (1994) Fig 4.3
+# Validation: EUCASS 2017-031 -> M=10: Fs~1000 N.s/kg, Isp~2607s, f=0.039
+# Toolkit result at M=10: Fs=1117.1 N.s/kg, Isp=2920.9s (12% diff due to alt schedule)
+# Thesis: Faraz Shaikh, A Technical Study of Ramjet-Scramjet Propulsion Systems (2025)
+Mach,altitude_m,Fs_Ns_per_kg,Isp_s,fuel_air_ratio,eta_thermal_pct,inlet_recovery
+5,20000,916.0,4670.2,0.0200,77.66,0.800
+6,22000,1016.6,4146.7,0.0250,81.67,0.740
+7,24000,1028.2,3744.5,0.0280,83.99,0.680
+8,26000,1073.5,3420.7,0.0320,85.61,0.630
+9,28000,1111.0,3147.0,0.0360,86.64,0.580
+10,30000,1117.1,2920.9,0.0390,87.24,0.540
+12,33000,1115.3,2527.2,0.0450,87.65,0.470
+15,38000,1065.9,2090.2,0.0520,86.77,0.380
