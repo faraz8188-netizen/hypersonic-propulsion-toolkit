@@ -1,0 +1,15 @@
+# Ramjet Performance Results - Toolkit Computation
+# Model: Brayton cycle with inlet losses
+# Inlet pressure recovery: eta=0.92 (NATO AVT-185 / DTIC ADA596056)
+# Combustion efficiency: eta_c=0.92 (published range 0.90-0.95)
+# Altitude: 20000 m | US Standard Atmosphere 1976 (NASA TM-X-74335)
+# Reference: Heiser & Pratt (1994) [Thesis Ref 23]; MDPI Energies 11(10):2558 (2018)
+# Thesis: Faraz Shaikh, A Technical Study of Ramjet-Scramjet Propulsion Systems (2025)
+Mach,Fs_H2_Ns_per_kg,Isp_H2_s,eta_th_H2_pct,Fs_kero_Ns_per_kg,Isp_kero_s
+2.0,865.5,4490.2,39.86,918.8,1644.9
+2.5,897.4,4881.3,50.25,954.5,1791.7
+3.0,877.0,5070.6,58.24,935.0,1865.5
+3.5,820.4,5124.1,64.15,876.9,1890.1
+4.0,738.5,5084.5,68.34,791.7,1880.9
+4.5,639.1,4975.9,71.08,687.3,1846.8
+5.0,527.0,4806.6,72.45,569.0,1791.0
