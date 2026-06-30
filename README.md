@@ -4,6 +4,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21053028.svg)](https://doi.org/10.5281/zenodo.21053028)
 [![Validated vs EUCASS 2017-031](https://img.shields.io/badge/validated-EUCASS%202017--031-orange)]()
 
 ---
@@ -53,6 +54,14 @@ hypersonic-propulsion-toolkit/
 |  |- scramjet_performance_results.csv       # Scramjet H2 results (EUCASS validated)
 |- figures/                                  # Output plots (generated on run)
 ```
+
+---
+
+## Research Paper and DOI
+
+This toolkit and accompanying research are archived on Zenodo:
+
+**DOI: [10.5281/zenodo.21053028](https://doi.org/10.5281/zenodo.21053028)**
 
 ---
 
@@ -121,7 +130,8 @@ Research interests: Hypersonic propulsion, spacecraft propulsion, detonation-bas
   author = {Shaikh, Faraz},
   title  = {Hypersonic Propulsion Toolkit},
   year   = {2025},
-  url    = {https://github.com/faraz8188-netizen/hypersonic-propulsion-toolkit}
+  doi    = {10.5281/zenodo.21053028},
+  url    = {https://doi.org/10.5281/zenodo.21053028}
 }
 ```
 
