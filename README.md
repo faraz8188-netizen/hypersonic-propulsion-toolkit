@@ -4,7 +4,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21053028.svg)](https://doi.org/10.5281/zenodo.21053028)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21054986.svg)](https://doi.org/10.5281/zenodo.21054986)
 [![Validated vs EUCASS 2017-031](https://img.shields.io/badge/validated-EUCASS%202017--031-orange)]()
 [![Chemistry vs Marzouk 2023](https://img.shields.io/badge/chemistry-Marzouk%202023-blueviolet)]()
 
@@ -76,9 +76,9 @@ hypersonic-propulsion-toolkit/
 |- ramjet_performance.py                     # Brayton cycle model, Mach 2-5
 |- scramjet_performance.py                   # Enthalpy nozzle model, Mach 5-15
 |- comparative_analysis.py                   # Full Mach 2-15 comparison
-|- nasa7_thermo.py                           # NEW v1.1: NASA polynomial thermo database
-|- equilibrium_combustion.py                 # NEW v1.1: equilibrium AFT solver
-|- scramjet_combustor_v2.py                  # NEW v1.1: real-chemistry combustor integration
+|- nasa7_thermo.py                           # v1.1: NASA polynomial thermo database
+|- equilibrium_combustion.py                 # v1.1: equilibrium AFT solver
+|- scramjet_combustor_v2.py                  # v1.1: real-chemistry combustor integration
 |- run_all.py                                # Main runner
 |- requirements.txt                          # Python dependencies
 |- data/
@@ -92,9 +92,11 @@ hypersonic-propulsion-toolkit/
 
 ## Research Paper and DOI
 
-This toolkit and accompanying research are archived on Zenodo:
+This toolkit and accompanying research are archived on Zenodo, with both
+v1.0.0 and v1.1.0 published as separate citable versions:
 
-**DOI: [10.5281/zenodo.21053028](https://doi.org/10.5281/zenodo.21053028)**
+**Latest (v1.1.0): [10.5281/zenodo.21054986](https://doi.org/10.5281/zenodo.21054986)**
+**v1.0.0: [10.5281/zenodo.21053028](https://doi.org/10.5281/zenodo.21053028)**
 
 ---
 
@@ -117,7 +119,7 @@ This toolkit and accompanying research are archived on Zenodo:
 | Fs | ~1,000 N.s/kg | 1,117 N.s/kg | +12% |
 | f | 0.039 | 0.039 | 0% |
 
-### Equilibrium Combustion vs Marzouk (2023) - NEW v1.1
+### Equilibrium Combustion vs Marzouk (2023) - v1.1
 
 | Parameter | Marzouk 2023 | Toolkit | Error |
 |---|---|---|---|
@@ -135,7 +137,7 @@ pip install -r requirements.txt
 python run_all.py
 ```
 
-Run new v1.1 chemistry modules individually:
+Run v1.1 chemistry modules individually:
 ```bash
 python nasa7_thermo.py            # Thermo database self-test
 python equilibrium_combustion.py  # Equilibrium solver + Marzouk validation
@@ -172,9 +174,10 @@ Research interests: Hypersonic propulsion, spacecraft propulsion, detonation-bas
 @software{shaikh2025hypersonic,
   author = {Shaikh, Faraz},
   title  = {Hypersonic Propulsion Toolkit},
-  year   = {2025},
-  doi    = {10.5281/zenodo.21053028},
-  url    = {https://doi.org/10.5281/zenodo.21053028}
+  year   = {2026},
+  version = {v1.1.0},
+  doi    = {10.5281/zenodo.21054986},
+  url    = {https://doi.org/10.5281/zenodo.21054986}
 }
 ```
 
