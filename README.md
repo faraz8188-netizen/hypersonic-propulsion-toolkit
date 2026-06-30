@@ -6,6 +6,34 @@
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.21053028.svg)](https://doi.org/10.5281/zenodo.21053028)
 [![Validated vs EUCASS 2017-031](https://img.shields.io/badge/validated-EUCASS%202017--031-orange)]()
+[![Chemistry vs Marzouk 2023](https://img.shields.io/badge/chemistry-Marzouk%202023-blueviolet)]()
+
+---
+
+## v1.1 Update - Real Equilibrium Combustion Chemistry
+
+The original v1.0 combustor model used a fixed H2 lower heating value (LHV)
+assumption. v1.1 adds genuine NASA-polynomial equilibrium combustion
+thermodynamics, replacing that assumption with real chemistry:
+
+- **nasa7_thermo.py**: NASA 7-coefficient polynomial thermodynamic database
+  (H, H2, O, O2, OH, H2O, N2), exact coefficients from GRI-Mech 3.0 /
+  NASA TM-4513. Validated: computed H2O formation enthalpy at 298.15K
+  matches the NIST WebBook reference value exactly (-241.826 kJ/mol).
+- **equilibrium_combustion.py**: H2/air adiabatic flame temperature solver
+  with dissociation effects, validated to **0.06% error** against published
+  CEARUN equilibrium-chemistry data (Marzouk 2023, DOI:10.48084/etasr.6132).
+- **scramjet_combustor_v2.py**: integrates the above using the ACTUAL
+  combustor static temperature (not freestream stagnation temperature) as
+  the reactant initial condition.
+
+**Key finding from this integration:** at realistic stoichiometric
+combustion, the validated chemistry range (NASA polynomials valid to 3500K)
+is exceeded starting at Mach 9, not Mach 15 as a naive check would suggest -
+found by checking both inlet AND output flame temperature, after an earlier
+version of the code missed this by only checking inlet temperature. At
+realistic lean operation (phi=0.4), the validated range extends to M=10-11.
+This finding, including the bug that revealed it, is documented in the code.
 
 ---
 
@@ -35,6 +63,8 @@ Every constant is sourced from peer-reviewed literature:
 | Scramjet Fs at M=10 | ~1000 N.s/kg | EUCASS 2017-031 |
 | Inlet recovery M=5-15 | 0.38-0.80 | Heiser & Pratt (1994) Fig 4.3 |
 | Altitude trajectory | Constant dynamic-q | Heiser & Pratt (1994) |
+| H2O formation enthalpy | -241.826 kJ/mol | NIST WebBook (exact match) |
+| Stoichiometric air-H2 AFT | 2520.33 K (complete), 2378.62 K (equilibrium) | Marzouk (2023), DOI:10.48084/etasr.6132 |
 
 ---
 
@@ -46,6 +76,9 @@ hypersonic-propulsion-toolkit/
 |- ramjet_performance.py                     # Brayton cycle model, Mach 2-5
 |- scramjet_performance.py                   # Enthalpy nozzle model, Mach 5-15
 |- comparative_analysis.py                   # Full Mach 2-15 comparison
+|- nasa7_thermo.py                           # NEW v1.1: NASA polynomial thermo database
+|- equilibrium_combustion.py                 # NEW v1.1: equilibrium AFT solver
+|- scramjet_combustor_v2.py                  # NEW v1.1: real-chemistry combustor integration
 |- run_all.py                                # Main runner
 |- requirements.txt                          # Python dependencies
 |- data/
@@ -84,7 +117,12 @@ This toolkit and accompanying research are archived on Zenodo:
 | Fs | ~1,000 N.s/kg | 1,117 N.s/kg | +12% |
 | f | 0.039 | 0.039 | 0% |
 
-The 12% difference is a known effect of the constant dynamic-pressure altitude schedule vs fixed conditions in EUCASS. See Chapter 16 of the thesis.
+### Equilibrium Combustion vs Marzouk (2023) - NEW v1.1
+
+| Parameter | Marzouk 2023 | Toolkit | Error |
+|---|---|---|---|
+| Complete combustion AFT | 2,520.33 K | 2,518.83 K | 0.06% |
+| Equilibrium AFT (with dissociation) | 2,378.62 K | 2,377.12 K | 0.06% |
 
 ---
 
@@ -97,6 +135,13 @@ pip install -r requirements.txt
 python run_all.py
 ```
 
+Run new v1.1 chemistry modules individually:
+```bash
+python nasa7_thermo.py            # Thermo database self-test
+python equilibrium_combustion.py  # Equilibrium solver + Marzouk validation
+python scramjet_combustor_v2.py   # Full combustor survey across Mach 5-15
+```
+
 ---
 
 ## Key References
@@ -105,12 +150,10 @@ python run_all.py
 - EUCASS 2017-031: Thermodynamic performance of scramjet at wide Mach numbers.
 - NATO AVT-185 / DTIC ADA596056: Ramjet Intakes.
 - NASA TM-X-74335: US Standard Atmosphere 1976.
+- NASA TM-4513: McBride, Gordon and Reno, Coefficients for Calculating Thermodynamic and Transport Properties of Individual Species, 1993.
+- Marzouk, O.A., Adiabatic Flame Temperatures for Oxy-Methane, Oxy-Hydrogen, Air-Methane, and Air-Hydrogen Stoichiometric Combustion, Eng. Technol. Appl. Sci. Res., 13(4), 2023. DOI:10.48084/etasr.6132
 - G. P. Sutton and O. Biblarz, Rocket Propulsion Elements, 9th ed. Wiley, 2017.
 - J. D. Anderson Jr., Hypersonic and High Temperature Gas Dynamics, 2nd ed. AIAA, 2006.
-- J. D. Anderson Jr., Introduction to Flight, 8th ed. McGraw-Hill, 2016.
-- M. K. Smart, Scramjets. Aeronautical Journal, vol. 111, pp. 605-619, 2007.
-- F. S. Billig, Research on Supersonic Combustion. J. Propulsion Power, 1993.
-- G. P. Anderson et al., Scramjet Performance. in Scramjet Propulsion, AIAA, 2000.
 
 ---
 
